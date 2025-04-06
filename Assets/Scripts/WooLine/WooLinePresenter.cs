@@ -1,15 +1,19 @@
 ﻿using System;
 using R3;
 using UnityEngine;
+using Zenject;
 
-public class WooLinePresenter : IDisposable
+public class WooLinePresenter : IDisposable, IInitializable
 { 
+    [Inject]
     private WooLineView _view;
+    [InjectOptional]
     private WooLineModel _model;
 
+    [InjectOptional]
     private WooPath _path;
 
-    private CompositeDisposable _disposable;
+    private CompositeDisposable _disposable = new();
 
     private readonly Vector3 SelectedScale = new(.35f, .35f, 1f);
     private readonly Vector3 UnelectedScale = new(.5f, .5f, 1f);
